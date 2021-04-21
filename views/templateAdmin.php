@@ -11,17 +11,16 @@
 
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-  <a href="#">About</a>
+  <!-- <a href="#">About</a>
   <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
-  <button class="dropdown-btn">Dropdown
+  <a href="#">Clients</a> -->
+  <a href="#">Log out</a>
+  <button class="dropdown-btn">Categories
     <i class="fa fa-caret-down"></i>
   </button>
   <div class="dropdown-container">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
+    <a href="index.php?action=list_cat">List</a>
+    <a href="index.php?action=add_cat">Add</a>
   </div>
 
   <button class="dropdown-btn">Dropdown
@@ -33,21 +32,20 @@
     <a href="#">Link 3</a>
   </div>
 
-  <button class="dropdown-btn">Dropdown
+  <button class="dropdown-btn">Grades
     <i class="fa fa-caret-down"></i>
   </button>
   <div class="dropdown-container">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
+    <a href="index.php?action=list_gr">List</a>
+    <a href="index.php?action=add_gr">Add</a>
   </div>
 
-  <button class="dropdown-btn">Dropdown
+  <button class="dropdown-btn">Users
     <i class="fa fa-caret-down"></i>
   </button>
   <div class="dropdown-container">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
+    <a href="index.php?action=list_us">List</a>
+    <a href="index.php?action=record">Recording</a>
     <a href="#">Link 3</a>
   </div>
 </div>

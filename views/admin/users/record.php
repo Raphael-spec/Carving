@@ -8,11 +8,11 @@
                 
                 <div class="row">
                     <div class="col">
-                        <label for="nom">Name*</label>
+                        <label for="name">Name*</label>
                         <input type="text" id="name" name="name" class="form-control" placeholder="Please enter a name" >
                     </div>
                     <div class="col">
-                        <label for="modele">Firstname*</label>
+                        <label for="firstname">Firstname*</label>
                         <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Please enter a firstname" >
                     </div>
                     
@@ -23,7 +23,7 @@
                         <input type="text" id="login" name="login" class="form-control" placeholder="Please enter a login" >
                     </div>
                     <div class="col">
-                        <label for="quantite">Password*</label>
+                        <label for="password">Password*</label>
                         <input type="password" id="password" name="password" class="form-control" placeholder="Please enter a password" >
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                         <input type="email" id="mail" name="mail" class="form-control" placeholder="Please enter a mail" >
                     </div>
                     <div class="col">
-                        <label for="cat">Grade</label>
+                        <label for="grade">Grade</label>
                         <select id="grade" name="grade" class="form-select">
                         <!-- <option value="">Choisir</option> -->
                         <?php foreach ($allGr as $gr) {; ?>

@@ -71,9 +71,9 @@ class AdminUserModel extends Tree{
         
         $sql = "SELECT *
                 FROM user
-                WHERE email = :email";
+                WHERE mail = :mail";
         
-        $result = $this->getRequest($sql, ['email'=>$use->getMail()]);
+        $result = $this->getRequest($sql, ['mail'=>$use->getMail()]);
         
         if($result->rowCount() == 0){
             
@@ -98,4 +98,71 @@ class AdminUserModel extends Tree{
 
         }
     }
+    //___________________________________________________________//
+
+    public function deleteUser(User $use){
+        
+        $sql = "DELETE FROM user
+                WHERE id_u = :id";
+        
+        $result = $this->getRequest($sql, ['id'=>$use->getId_u()]);
+        
+            return $result->rowCount();
+        
+    }
+    //___________________________________________________________//
+
+    public function collectUser(User $edit){
+        
+        $sql = "SELECT *
+                FROM user
+                WHERE id_u = :id";
+        
+        $result = $this->getRequest($sql, ['id'=>$edit->getId_u()]);
+
+        
+        if($result->rowCount() > 0){
+            
+            $userRow = $result->fetch(PDO::FETCH_OBJ);
+            
+            $edit = new User();
+            
+            $edit->setId_u($userRow->id_u);
+            $edit->setName($userRow->name);
+            $edit->setFirstname($userRow->firstname);
+            $edit->setLogin($userRow->login);
+            $edit->setPassword($userRow->password);
+            $edit->setMail($userRow->mail);
+            $edit->getGrade()->setId_g($userRow->id_g);
+            //$edit->getGrade()->setName_g($userRow->id_g);
+
+            return $edit;
+        }
+    }
+
+    public function changeUser(User $chUs){
+        
+        $sql = "UPDATE user
+                SET name = :name, firstname = :firstname, login = :login, password = :password, mail = :mail, id_g = :id_g
+                WHERE id_u = :id";
+        
+            $tabPar = [     "name"=>$chUs->getName(),
+                            "firstname"=>$chUs->getFirstname(), 
+                            "login"=>$chUs->getLogin(), 
+                            "password"=>$chUs->getPassword(), 
+                            "mail"=>$chUs->getMail(), 
+                            //"status"=>$chUs->getStatus(), 
+                            "id_g"=>$chUs->getGrade()->getId_g(), 
+                            "id"=>$chUs->getId_u()
+                        ];
+    
+
+      $result = $this->getRequest($sql, $tabPar);
+
+     return $result->rowCount();
+    }
+
 }
+
+// $adminUs = new AdminUserModel();
+// var_dump($adminUS->collectUser());

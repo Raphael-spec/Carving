@@ -10,11 +10,11 @@
             <?php } ?>
             <form action="<?php $_SERVER['PHP_SELF'];?>" method="post">
 
-                <label for="loginEmail">Login or Mail*</label>
-                <input type="text" id="loginEmail" name="loginEmail" class="form-control mt-2" placeholder="Please enter your login or mail">
+                <label for="loginMail" class="h6">Login or Mail*</label>
+                <input type="text" id="loginMail" name="loginMail" class="form-control mt-2" placeholder="Please enter your login or mail">
                 
-                <label for="pass">Password*</label>
-                <input type="password" id="pass" name="pass" class="form-control mt-2" placeholder="Enter your password">
+                <label for="password" class="h6">Password*</label>
+                <input type="password" id="password" name="password" class="form-control mt-2" placeholder="Enter your password">
 
                 <button  type="submit" class="btn btn-primary col-12 mt-2" name="submit">Log in</button>
             </form>

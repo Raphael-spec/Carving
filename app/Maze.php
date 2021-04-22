@@ -60,6 +60,14 @@ class Maze{
                 case 'list_us':
                     $this->ctrUs->listUsers();
                     break;
+
+                case 'delete_us':
+                    $this->ctrUs->eraseUser();
+                    break;
+
+                case 'edit_us':
+                    $this->ctrUs->EditUser();
+                    break;
                 
                 case 'login':
                     $this->ctrUs->login();

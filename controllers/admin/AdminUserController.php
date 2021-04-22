@@ -45,19 +45,19 @@ class AdminUserController{
         
         if(isset($_POST['submit'])){
             
-            if(strlen($_POST['pass']) >= 4 && !empty($_POST['loginEmail'])){
+            if(strlen($_POST['password']) >= 4 && !empty($_POST['loginMail'])){
                 
-                $loginEmail = trim(htmlentities(addslashes($_POST['loginEmail'])));
-                $pass = md5(trim(htmlentities(addslashes($_POST['pass']))));
+                $loginMail = trim(htmlentities(addslashes($_POST['loginMail'])));
+                $password = md5(trim(htmlentities(addslashes($_POST['password']))));
                
-                $data_u = $this->adUseM->signIn($loginEmail, $pass);
+                $data_u = $this->adUseM->signIn($loginMail, $password);
                 
                 if(!empty($data_u)){
                     
-                    if($data_u->statut > 0){
+                    if($data_u->status > 0){
                         //session_start();
                         //$_SESSION['Auth'] = $data_u;
-                        header('location:index.php?action=list_carv');
+                        header('location:index.php?action=list_cat');
         
                     }else{
         
@@ -114,7 +114,73 @@ class AdminUserController{
                 $allGr = $this->adGrM->getGrade();
             
                 require_once('./views/admin/users/record.php');
-        
+    }
+    //___________________________________________________________//
 
+    public function eraseUser(){
+
+        //AuthController::isLogged();
+        
+        if(isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT)){
+          
+          $id = $_GET['id'];
+          
+          $delU = new User();
+         
+          $delU->setId_u($id);
+          
+          $yo = $this->adUseM->deleteUser($delU);
+  
+            if($yo > 0){
+                    header('location:index.php?action=list_us');
+                }
+  
+         }
+  
+      }
+    //___________________________________________________________//
+
+    public function EditUser(){
+
+        //AuthController::isLogged();
+        
+        if(isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT)){
+            
+            $id = $_GET['id'];
+            
+            $modifU = new User();
+            
+            $modifU->setId_u($id);
+            
+            $editUs = $this->adUseM->collectUser($modifU);
+
+            $tabGr = $this->adGrM->getGrade();
+            
+           if(isset($_POST['submit']) && !empty($_POST['login']) && !empty($_POST['password'])){
+               
+               $name = trim(htmlentities(addslashes($_POST['name'])));
+               $firstname = trim(htmlentities(addslashes($_POST['firstname'])));
+               $login = trim(htmlentities(addslashes($_POST['login'])));
+               $password = md5(trim(htmlentities(addslashes($_POST['password']))));
+               $mail = trim(htmlentities(addslashes($_POST['mail'])));
+               $id_g = trim(htmlentities(addslashes($_POST['grade'])));
+               
+               $editUs->setName($name);
+               $editUs->setFirstname($firstname);
+               $editUs->setLogin($login);
+               $editUs->setPassword($password);
+               $editUs->setMail($mail);
+               $editUs->getGrade()->setId_g($id_g);
+               $editUs->setStatus(1);
+               
+               $ok = $this->adUseM ->changeUser($editUs); 
+              
+            //    var_dump($_POST);
+            //    echo'bonjour';
+                header('location:index.php?action=list_us');
+                
+            }
+            require_once('./views/admin/users/adminEditUs.php');
+        }
     }
 }

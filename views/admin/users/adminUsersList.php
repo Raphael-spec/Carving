@@ -11,7 +11,8 @@
             <th>Mail</th>
             <th>Grade</th>
             <?php //if($_SESSION['Auth']->id_g == 1){ ?>
-            <th class="text-center">Action</th>
+            <th class="text-center">In/Out</th>
+            <th colspan="2" class="text-center">Actions</th>
             <?php //} ?>
         </tr>
     </thead>
@@ -24,7 +25,7 @@
             <td><?=$user->getLogin();?></td>
             <td><?=$user->getMail();?></td>
             <td><?=$user->getGrade()->getName_g();?></td>
-            <?php// if($_SESSION['Auth']->id_g == 1){ ?>
+            
 
 
             <td class="text-center">
@@ -34,11 +35,22 @@
                 </a> -->
                 <?php
                    echo ($user->getStatus())
-                    ? "<a href='index.php?action=list_u&id=".$user->getId_u()."&status=".$user->getStatus()."' onclick='return confirm(`Are you sure you want to unlock this status?`)' class='btn btn-success'><i class='fas fa-unlock'>Unlock</i></a>"
-                    : "<a href='index.php?action=list_u&id=".$user->getId_u()."&status=".$user->getStatus()."' onclick='return confirm(`Are you sure you want to lock on this status?`)' class='btn btn-danger'><i class='fas fa-lock'>Lock on</i></a>"
+                    ? "<a href='index.php?action=list_us&id=".$user->getId_u()."&status=".$user->getStatus()."' onclick='return confirm(`Are you sure you want to unlock this status?`)' class='btn btn-success'><i class='fas fa-unlock'>Unlock</i></a>"
+                    : "<a href='index.php?action=list_us&id=".$user->getId_u()."&status=".$user->getStatus()."' onclick='return confirm(`Are you sure you want to lock on this status?`)' class='btn btn-danger'><i class='fas fa-lock'>Lock on</i></a>"
                 ?>
             </td>
-            <?php //} ?>
+            <td class="text-center">
+                <a class="btn btn-warning" href="index.php?action=edit_us&id=<?=$user->getId_u();?>">
+                    <i class="fas fa-pen"></i>
+                </a>
+              </td>
+              <td  class="text-center">
+                <a class="btn btn-danger" href="index.php?action=delete_us&id=<?=$user->getId_u();?>"
+                    onclick="return confirm('Are you sure you want to delete this user?')">
+                    <i class="fas fa-trash"></i>
+                </a>
+              </td>
+          
             
         </tr>
         <?php } ?>

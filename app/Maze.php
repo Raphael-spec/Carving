@@ -8,6 +8,7 @@ class Maze{
     private $ctrCat;
     private $ctrGrd;
     private $ctrUs;
+    private $ctrCar;
 
 
     public function __construct()
@@ -15,6 +16,7 @@ class Maze{
         $this->ctrCat = new AdminCategoryController();
         $this->ctrGrd = new AdminGradeController();
         $this->ctrUs = new AdminUserController();
+        $this->ctrCar = new AdminCarvingController();
 
 
     }
@@ -39,6 +41,10 @@ class Maze{
 
                 case 'edit_cat':
                     $this->ctrCat->editCat();
+                    break;
+
+                case 'list_carv':
+                    $this->ctrCar->listCarving();
                     break;
 
                 case 'list_gr':
